@@ -9,27 +9,24 @@ const game = {
   play: function() {
     this.secretNum = Math.floor(Math.random() * 
       (this.biggestNum - this.smallestNum + 1)) + this.smallestNum
-      let guess = this.getGuess
+      let guess
     while (guess !== this.secretNum){
-      this.getGuess()
+      guess = this.getGuess()
       this.prevGuesses.push(guess)
-      this.render
-      return this.secretNum
+      this.render(guess)
     }
   },
   getGuess: function(){
-    while (this.prevGuesses !== this.secretNum){
       let guess = prompt(`Enter a guess between ${this.smallestNum} and ${this.biggestNum}.`)
       const parsed = parseInt(guess)
-    }
+      return parsed
   },
-  render: function(){ 
-    let guess = this.getGuess
-    if (guess > this.smallestNum && guess < this.biggestNum){
+  render: function(guess){ 
+    if (guess >= this.smallestNum && guess <= this.biggestNum){
       if (guess > this.secretNum){
-        alert(`Your guess is too high!! Previous guesses: ${this.prevGuesses.join + ','}`)
+        alert(`Your guess is too high!! Previous guesses: ${this.prevGuesses.join(', ')}`)
       }else if (guess < this.secretNum){
-        alert(`Your guess is too low!! Previous guesses: ${this.prevGuesses.join + ','}`)
+        alert(`Your guess is too low!! Previous guesses: ${this.prevGuesses.join(', ')}`)
       }else if (guess === this.secretNum){
         alert(`Congrats! You guess the number in ${this.prevGuesses.length} number of guesses!!`)
       }
